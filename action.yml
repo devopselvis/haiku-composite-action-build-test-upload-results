@@ -64,7 +64,6 @@ runs:
       run: |
         mkdir deploy
         cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
-      working-directory: ${{ inputs.haiku-src-path }}
       shell: bash
 
     - name: Upload deployment package
