@@ -83,4 +83,4 @@ runs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: deployment-package
-        path: ${{ github.worksapce }}/${{ inputs.haiku-src-path }}/deploy/
+        path: ${{ github.worksapce }}/deploy/
