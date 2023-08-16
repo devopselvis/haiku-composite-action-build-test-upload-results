@@ -18,26 +18,32 @@ runs:
     - name: Install dependencies
       run: npm ci
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Install supertest
       run: npm install supertest --save-dev
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Install mocha
       run: npm install mocha --save-dev
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Install mocha junit reporter
       run: npm install mocha-junit-reporter --save-dev
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Install chai
       run: npm install chai --save-dev
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Run tests
       run: npm test 
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Create Test Summary
       uses: test-summary/action@v2.1
@@ -52,12 +58,14 @@ runs:
         echo "Test Results:" >>  $GITHUB_STEP_SUMMARY
         cat ${{ github.workspace }}/${{ inputs.haiku-src-path }}/summary.md >> $GITHUB_STEP_SUMMARY
       if: always()
+      shell: bash
 
     - name: Copy files for deployment
       run: |
         mkdir deploy
         cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
       working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
 
     - name: Upload deployment package
       uses: actions/upload-artifact@v3.1.2
