@@ -67,6 +67,18 @@ runs:
       working-directory: ${{ github.workspace }}
       shell: bash
 
+    - name: verify 1
+      run: |
+        ls -la
+      working-directory: ${{ github.workspace }}
+      shell: bash
+
+    - name: verify deploy
+      run: |
+        ls -la deploy
+      working-directory: ${{ github.workspace }}
+      shell: bash
+
     - name: Upload deployment package
       uses: actions/upload-artifact@v3.1.2
       with:
