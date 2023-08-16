@@ -67,13 +67,8 @@ runs:
       working-directory: ${{ github.workspace }}
       shell: bash
 
-    - name: Verification Step
-      run: |
-        ls -lR ${{ github.workspace }}/deploy
-      shell: bash
-
     - name: Upload deployment package
       uses: actions/upload-artifact@v3.1.2
       with:
         name: deployment-package
-        path: ${{ inputs.haiku-src-path }}/deploy/
+        path: ${{ github.worksapce }}/${{ inputs.haiku-src-path }}/deploy/
