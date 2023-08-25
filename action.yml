@@ -20,26 +20,6 @@ runs:
       working-directory: ${{ inputs.haiku-src-path }}
       shell: bash
 
-    - name: Install supertest
-      run: npm install supertest --save-dev
-      working-directory: ${{ inputs.haiku-src-path }}
-      shell: bash
-
-    - name: Install mocha
-      run: npm install mocha --save-dev
-      working-directory: ${{ inputs.haiku-src-path }}
-      shell: bash
-
-    - name: Install mocha junit reporter
-      run: npm install mocha-junit-reporter --save-dev
-      working-directory: ${{ inputs.haiku-src-path }}
-      shell: bash
-
-    - name: Install chai
-      run: npm install chai --save-dev
-      working-directory: ${{ inputs.haiku-src-path }}
-      shell: bash
-
     - name: Run tests
       run: npm test 
       working-directory: ${{ inputs.haiku-src-path }}
@@ -60,12 +40,19 @@ runs:
       if: always()
       shell: bash
 
+    - name: Compile using Vercel
+      run: npm run build
+      working-directory: ${{ inputs.haiku-src-path }}
+      shell: bash
+
     - name: Copy files for deployment
       run: |
         mkdir deploy
         #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
         #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/process.json ${{ inputs.haiku-src-path }}/package-lock.json ${{ inputs.haiku-src-path }}/node_modules/ ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
-        cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/process.json ${{ inputs.haiku-src-path }}/package-lock.json ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
+        #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/process.json ${{ inputs.haiku-src-path }}/package-lock.json ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
+
+        cp -r ${{ inputs.haiku-src-path }}/dist/index.js ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/public/* ${{ inputs.haiku-src-path }}/views/ deploy/
       working-directory: ${{ github.workspace }}
       shell: bash
 
