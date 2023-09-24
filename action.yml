@@ -48,10 +48,6 @@ runs:
     - name: Copy files for deployment
       run: |
         mkdir deploy
-        #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
-        #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/process.json ${{ inputs.haiku-src-path }}/package-lock.json ${{ inputs.haiku-src-path }}/node_modules/ ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
-        #cp -r ${{ inputs.haiku-src-path }}/package.json ${{ inputs.haiku-src-path }}/index.js ${{ inputs.haiku-src-path }}/haikus.json ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/process.json ${{ inputs.haiku-src-path }}/package-lock.json ${{ inputs.haiku-src-path }}/views/ ${{ inputs.haiku-src-path }}/public/ deploy/
-
         cp -r ${{ inputs.haiku-src-path }}/dist/index.js ${{ inputs.haiku-src-path }}/server.js ${{ inputs.haiku-src-path }}/web.config ${{ inputs.haiku-src-path }}/public/* ${{ inputs.haiku-src-path }}/views/ deploy/
       working-directory: ${{ github.workspace }}
       shell: bash
