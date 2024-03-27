@@ -16,6 +16,7 @@ runs:
       uses: actions/checkout@v3.5.3
 
     - run: echo ${{vars.MY_ORG_VAR1}}
+      shell: bash
 
     - name: Install dependencies
       run: npm ci
